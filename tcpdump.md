@@ -1,12 +1,13 @@
 # tcpdump technotes
 
 ## snmp
-```
-tcpdump host 172.16.254.1 -i eth0 -T snmp -s 65535 -w ~/outputfile
-```
+
+  tcpdump host 172.16.254.1 -i eth0 -T snmp -s 65535 -w ~/outputfile
+
 ## DHCP
 
 tcpdump filter to match DHCP packets including a specific Client MAC Address:
+
 ```
 tcpdump -i br0 -vvv -s 1500 '((port 67 or port 68) and (udp[38:4] = 0x3e0ccf08))'
 ```
