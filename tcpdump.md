@@ -2,7 +2,9 @@
 
 ## snmp
 
-  tcpdump host 172.16.254.1 -i eth0 -T snmp -s 65535 -w ~/outputfile
+```
+tcpdump host 172.16.254.1 -i eth0 -T snmp -s 65535 -w ~/outputfile
+```
 
 ## DHCP
 
