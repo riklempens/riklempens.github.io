@@ -253,14 +253,13 @@ This rule should do the job :
 
     tcpdump -i eth1 'ip[0] > 69'
 
-Somehow, the proper way is to mask the first half/field of the first byte, because as mentionned earlier,
-this filter would match any IPv6 traffic.
+Somehow, the proper way is to mask the first half/field of the first byte, because as mentioned earlier, this filter would match any IPv6 traffic.
 
-2. The proper/right way : "masking" the first half of the byte
+The proper/right way : "masking" the first half of the byte
 
     0100 0101 : 1st byte originally
     0000 1111 : mask (0xf in hex or 15 in decimal). 0 will mask the values while 1 will keep the values intact.
-    =========
+    ---------
     0000 0101 : final result
 
 You should see the mask as a power switch. 1 means on/enabled, 0 means off/disabled.
@@ -418,16 +417,16 @@ Every bits of the mask match!
 
 - Matching PSH-ACK packets
 
-    tcpdump -i eth1 'tcp[13] = 24'
+      tcpdump -i eth1 'tcp[13] = 24'
 
 - Matching any combination containing FIN (FIN usually always comes with an ACK so we either
   need to use a mask or match the combination ACK-FIN)
 
-    tcpdump -i eth1 'tcp[13] & 1 = 1'
+      tcpdump -i eth1 'tcp[13] & 1 = 1'
 
 - Matching RST flag
 
-    tcpdump -i eth1 'tcp[13] & 4 = 4'
+      tcpdump -i eth1 'tcp[13] & 4 = 4'
 
 Actually, there's an easier way to filter flags :
 
@@ -435,7 +434,6 @@ Actually, there's an easier way to filter flags :
 
 - Matching all packages with TCP-SYN or TCP-FIN set :
     tcpdump 'tcp[tcpflags] & (tcp-syn|tcp-fin) != 0
-
 
 By looking at the TCP state machine diagram (http://www.wains.be/pub/networking/tcp_state_machine.jpg)
 we can find the different flag combinations we may want to analyze.
