@@ -2,7 +2,7 @@ title: Rik Lempens
 description: My digital home on the net
 google_analytics: 
 show_downloads: true
-theme: jekyll-theme-midnight
+theme: jekyll-theme-minimal
 
 gems:
   - jekyll-mentions
