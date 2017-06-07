@@ -64,24 +64,34 @@ Using in docker-compose:
 ### Docker cleanup
 
 Delete exited containers:
-`docker rm -v $(docker ps -a -q -f status=exited)`
+```
+docker rm -v $(docker ps -a -q -f status=exited)
+```
 
 *Docker keeps all of the images that you have used in the disk, even if those are not actively running. This is done so that it has the necessary images in the local ‘cache’. This is awesome because when you want to pull an image that depends on those, or when you are building an image, all of these are locally available. The bad news is that this eats up disk space!*
 
 The command to remove these unwanted images is:
-`docker rmi $(docker images -f "dangling=true" -q)`
+```
+docker rmi $(docker images -f "dangling=true" -q)
+```
 
 Remote  ‘dangling’ volumes:
-`docker volume rm $(docker volume ls -qf dangling=true)`
+```
+docker volume rm $(docker volume ls -qf dangling=true)
+```
 
 ## Docker compose
 To rebuild an image you must use
-`docker-compose build` or `docker-compose up --build`.
+```
+docker-compose build` or `docker-compose up --build
+```
 
 ## Docker swarm
 Just as you run a single container with docker run, you can now start a replicated, distributed, load balanced process on a swarm of Engines with docker service:
 
-`docker service create –name frontend –replicas 5 -p 80:80/tcp nginx:latest`
+```
+docker service create –name frontend –replicas 5 -p 80:80/tcp nginx:latest
+```
 
 This command declares a desired state on your swarm of 5 nginx containers, reachable as a single, internally load balanced service on port 80 of any node in your swarm.
 See also: https://blog.docker.com/2016/06/docker-1-12-built-in-orchestration/
@@ -99,7 +109,3 @@ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 7EA0A9C3F
 sudo apt update
 sudo apt-get install docker-ce
 ```
-
-
-
-#reference/technotes
